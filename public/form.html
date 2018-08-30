@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script> 
+    function submitform() {
+            $.ajax({
+                type: 'POST',
+                url: '/submitform',
+                data: $('#fm').serialize(),
+                dataType: 'json',
+                
+                
+            });
+        }   
+    </script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/styles/bootstrapv4.1.2.min.css" />
+    
+    
+</head>
+<body>
+        <form id="fm">
+                <input type="text" name="pname" class="form-control" placeholder="Product Name" >
+                <br>
+                <input type="text" name="cname" class="form-control" placeholder="Consumer name" >
+                <br>
+                <input type="text"  name="pcost" class="form-control" placeholder="Product Cost">
+                <br>
+                <input type="text" name="scost" class="form-control" placeholder="Shipping cost">
+                <br>
+                <input type="text" name="saddr" class="form-control" placeholder="Shipping Address">
+                <br>
+                <input type="text" name="phone" class="form-control" placeholder="phone number" >
+                <br>
+                <input type="text" name="status" class="form-control" placeholder="Status" >
+                <br>
+                <input type="date" name="date" class="form-control" placeholder="Date" >
+                <br>
+                <input type="button" class="btn btn-lg btn-info" onclick="submitform()" value="Submit">
+                <br>
+               
+            </form>
+    
+</body>
+</html>

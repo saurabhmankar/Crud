@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $.getJSON("Store.json",function(data){
+          //var arr=[data];
+          //console.log(arr);
+            var product_data='';
+    
+            $.each(data,function(key,value){
+                product_data+='<tr>';
+                product_data+='<td>'+value.id+'</td>';
+                product_data+='<td>'+value.pname+'</td>';
+                product_data+='<td>'+value.cname+'</td>';
+                product_data+='<td>'+value.pcost+'</td>';
+                product_data+='<td>'+value.scost+'</td>';
+                product_data+='<td>'+value.saddr+'</td>';
+                product_data+='<td>'+value.phone+'</td>';
+                product_data+='<td>'+value.status+'</td>';
+                product_data+='<td>'+value.date+'</td>';
+                product_data+='<td><a href="/delet?id='+value.id+'">Delete</a>'+' |  '+'<td><a href="#">Edit</a></td>';
+                product_data+='</tr>';
+                
+            });
+             $('#product_table').append(product_data);
+
+        });
+    });    
+    </script>
+  <title>Product Listing</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Product List</h2>           
+  <table class="table table-striped" id="product_table">
+    <thead>
+      <tr>
+          <th>ID</th>
+        <th>Product Name</th>
+        <th>Consumer Name</th>
+        <th>Product Cost</th>
+        <th>Shipping Cost</th>
+        <th>Shipping Address</th>
+        <th>Phone Number</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Operation</th>
+        
+      </tr>
+    </thead>
+    <tbody>
