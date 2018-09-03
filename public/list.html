@@ -1,85 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      var tblRow;
-      $.ajax({
-        type: 'GET',
-        url: '/gamelist',
-
-        dataType: 'json',
-
-        success: function (data) {
-          console.log("the data in ajax is", data);
-          var arrItem = [];
-
-          $.each(data, function (i, value) {
-            arrItem.push(data[i]);
-
-          });
-          console.log("Result",JSON.stringify(arrItem));
-          $.each(arrItem, function (i, f) {
-            // if(arrItem[i].isDelete == "false"){
-            tblRow = "<tr>"
-            tblRow+="<td>" + arrItem[i]._id + "</td>";
-            tblRow+= "<td>" + arrItem[i].game + "</td>" ;
-            tblRow+= "<td>" + arrItem[i].publisher + "</td>";
-            tblRow+="<td>" + arrItem[i].released + "</td>";
-            tblRow+="<td>" + arrItem[i].rating + "</td>";
-            tblRow+="<td>" + arrItem[i].score + "</td>";
-            tblRow+="<td>"+"<a href='/delet?id="+arrItem[i]._id+"' class='btn btn-md btn-danger'>Delete</a></button></td>";
-            tblRow+="<td>"+"<form method='POST' id='fm'>"+"<input type='text' name='ugame' id='ugame' placeholder='game'></td>";
-            tblRow+="<td>"+"<input type='text' name='upublisher' id='upublisher' placeholder='publisher'></td>"
-            tblRow+="<td>"+"<a href='/edit?id="+arrItem[i]._id+"' class='btn btn-md btn-info' type='submit'>Update</a>"+"</form>"+"</td>"+"</tr>";
-
-            $('#product_table').append(tblRow);
-
-
-          });
-        }
-
-      });
-    });
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $.getJSON("Store.json",function(data){
+          //var arr=[data];
+          //console.log(arr);
+            var product_data='';
     
+            $.each(data,function(key,value){
+                product_data+='<tr>';
+                product_data+='<td>'+value.id+'</td>';
+                product_data+='<td>'+value.pname+'</td>';
+                product_data+='<td>'+value.cname+'</td>';
+                product_data+='<td>'+value.pcost+'</td>';
+                product_data+='<td>'+value.scost+'</td>';
+                product_data+='<td>'+value.saddr+'</td>';
+                product_data+='<td>'+value.phone+'</td>';
+                product_data+='<td>'+value.status+'</td>';
+                product_data+='<td>'+value.date+'</td>';
+                product_data+='<td><a href="/delet?id='+value.id+'">Delete</a>'+' |  '+'<td><a href="#">Edit</a></td>';
+                product_data+='</tr>';
+                
+            });
+             $('#product_table').append(product_data);
 
-
-
-
-
-  </script>
+        });
+    });    
+    </script>
   <title>Product Listing</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="/styles/bootstrapv4.1.2.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 
-  <div class="container">
-    <h2>Game List</h2>
-    <table class="table table-striped" id="product_table">
-      <thead>
-        <tr>
+<div class="container">
+  <h2>Product List</h2>           
+  <table class="table table-striped" id="product_table">
+    <thead>
+      <tr>
           <th>ID</th>
-          <th>Games</th>
-          <th>Publisher</th>
-          <th>Released date</th>
-          <th>Rating</th>
-          <th>Score</th>
-          <th>Delete game</th>
-          <th>edit game</th>
-          <th>edit publisher</th>
-          <th>Update</th>
-
-        </tr>
-      </thead>
-    </table>
-  </div>
-</body>
-
-</html>
+        <th>Product Name</th>
+        <th>Consumer Name</th>
+        <th>Product Cost</th>
+        <th>Shipping Cost</th>
+        <th>Shipping Address</th>
+        <th>Phone Number</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Operation</th>
+        
+      </tr>
+    </thead>
+    <tbody>
